@@ -16,9 +16,9 @@ from rest_framework.compat import unicode_repr
 def manager_repr(value):
     model = value.model
     opts = model._meta
-    for _, name, manager in opts.concrete_managers + opts.abstract_managers:
+    for manager in opts.managers:
         if manager == value:
-            return '%s.%s.all()' % (model._meta.object_name, name)
+            return '%s.%s.all()' % (model._meta.object_name, manager.name)
     return repr(value)
 
 
